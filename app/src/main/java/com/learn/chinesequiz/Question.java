@@ -64,4 +64,25 @@ public class Question implements Parcelable {
             return new Question[size];
         }
     };
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getGoodResult() {
+        return goodResult;
+    }
+
+    public String getBadResult1() {
+        return badResult1;
+    }
+
+    public String getBadResult() {
+        return badResult;
+    }
+
+    public String getBadResult2() {
+        return badResult2;
+    }
+
 }
