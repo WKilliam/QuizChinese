@@ -21,7 +21,7 @@
         android:id="@+id/Submit"
         android:layout_width="117dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="32dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/resultTextView"
@@ -73,16 +73,5 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <EditText
-        android:id="@+id/testbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/resultTextView"
-        app:layout_constraintEnd_toEndOf="@+id/RadioGroup"
-        app:layout_constraintStart_toStartOf="@+id/RadioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/RadioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

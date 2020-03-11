@@ -61,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 RadioButton b =findViewById(checkedRadioButtonId);
 
                 if(b.getText().equals(question.getGoodResult())){
-                    TextView viewById3 = findViewById(R.id.testbox);
+                    TextView viewById3 = findViewById(R.id.resultTextView);
                     viewById3.setText("good");
                 }else{
-                    TextView viewById3 = findViewById(R.id.testbox);
+                    TextView viewById3 = findViewById(R.id.resultTextView);
                     viewById3.setText("bad");
                 }
                 Log.i("MainActivity","test message "+b.getText());
