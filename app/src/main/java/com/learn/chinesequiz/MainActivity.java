@@ -31,26 +31,30 @@ public class MainActivity extends AppCompatActivity {
         radom.add("toto");
         radom.add("tata");
 
+        //affiche la question
         TextView viewById = findViewById(R.id.boxQuestion);
-       // viewById.setText(question.getQuestion());
+        viewById.setText(question.getQuestion());
+
+        //affiche les choix en radio( en dur)
         RadioButton choice1 = findViewById(R.id.Choice1);
-
-        RadioButton choice2 = findViewById(R.id.Choice2);
-
-        RadioButton choice3 = findViewById(R.id.Choice3);
-
         choice1.setText(question.getGoodResult());
-
+        RadioButton choice2 = findViewById(R.id.Choice2);
         choice2.setText(radom.get(0));
-
+        RadioButton choice3 = findViewById(R.id.Choice3);
         choice3.setText(radom.get(1));
 
 
-        Button viewById4 = findViewById(R.id.Submit);
+        Button submitButton = findViewById(R.id.Submit);
 
 
 
-        viewById4.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -62,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(b.getText().equals(question.getGoodResult())){
                     TextView viewById3 = findViewById(R.id.resultTextView);
-                    viewById3.setText("good");
+                    viewById3.setText("Bonne réponse !");
                 }else{
                     TextView viewById3 = findViewById(R.id.resultTextView);
-                    viewById3.setText("bad");
+                    viewById3.setText("Raté. La bonne réponse est : " + question.getGoodResult());
                 }
                 Log.i("MainActivity","test message "+b.getText());
             }
