@@ -11,22 +11,26 @@ public class Question implements Parcelable {
 
     private String question;
     private String goodResult;
-    private int level;
     private int picture;
     private int sound;
 
-    public Question(String question, String goodResult, int level, int picture, int sound) {
+    public Question(String question, String goodResult, int picture) {
         this.question = question;
         this.goodResult = goodResult;
-        this.level = level;
+        this.picture = picture;
+    }
+
+    public Question(String question, String goodResult, int picture, int sound) {
+        this.question = question;
+        this.goodResult = goodResult;
         this.picture = picture;
         this.sound = sound;
     }
 
+
     protected Question(Parcel in) {
         question = in.readString();
         goodResult = in.readString();
-        level = in.readInt();
         picture = in.readInt();
         sound = in.readInt();
     }
@@ -35,7 +39,6 @@ public class Question implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(question);
         dest.writeString(goodResult);
-        dest.writeInt(level);
         dest.writeInt(picture);
         dest.writeInt(sound);
     }
@@ -57,11 +60,45 @@ public class Question implements Parcelable {
         }
     };
 
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     public String getGoodResult() {
         return goodResult;
     }
 
-    public String getQuestion() {
-        return question;
+    public void setGoodResult(String goodResult) {
+        this.goodResult = goodResult;
     }
+
+    public int getPicture() {
+        return picture;
+    }
+
+    public void setPicture(int picture) {
+        this.picture = picture;
+    }
+
+    public int getSound() {
+        return sound;
+    }
+
+    public void setSound(int sound) {
+        this.sound = sound;
+    }
+
+
+    private Question easy1 = new Question("Que signifie ce caractère ?","Voiture", R.drawable.car, 0);
+    private Question easy2 = new Question("Que signifie ce caractère ?","Feu", R.drawable.fire, 0);
+    private Question easy3 = new Question("Que signifie ce caractère ?","Forêt", R.drawable.forest, 0);
+    private Question easy4 = new Question("Que signifie ce caractère ?","Lune", R.drawable.moon, 0);
+    private Question easy5 = new Question("Que signifie ce caractère ?","Montagne", R.drawable.mountain, 0);
+    private Question easy6 = new Question("Que signifie ce caractère ?","Soleil", R.drawable.sun, 0);
+    private Question easy7 = new Question("Que signifie ce caractère ?","Eau", R.drawable.water, 0);
+
 }
