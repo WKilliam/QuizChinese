@@ -25,13 +25,15 @@ public class MainActivity extends AppCompatActivity {
 
         final Question question = new Question("combien fait 2x2 ?", "4", 0);
 
-        ;
 
-        ArrayList<String> listProposition = creatListRandom(question.getGoodResult(), QuestionHelper.getWrongMediumResponses());
+
+
+
+        ArrayList<String> listProposition = creatListRandom(QuestionHelper.getMediumQuestions().get(0).getGoodResult(), QuestionHelper.getWrongMediumResponses());
 
         //affiche la question
         TextView viewById = findViewById(R.id.boxQuestion);
-        viewById.setText(question.getQuestion());
+        viewById.setText(QuestionHelper.getMediumQuestions().get(0).getQuestion());
 
         //affiche les choix en radio( en dur)
         RadioButton choice1 = findViewById(R.id.Choice1);
@@ -53,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
                 RadioButton b =findViewById(checkedRadioButtonId);
 
-                if(b.getText().equals(question.getGoodResult())){
+                if(b.getText().equals(QuestionHelper.getMediumQuestions().get(0).getGoodResult())){
                     TextView viewById3 = findViewById(R.id.resultTextView);
                     viewById3.setText("Bonne réponse !");
                 }else{
                     TextView viewById3 = findViewById(R.id.resultTextView);
-                    viewById3.setText("Raté. La bonne réponse est : " + question.getGoodResult());
+                    viewById3.setText("Raté. La bonne réponse est : " + QuestionHelper.getMediumQuestions().get(0).getGoodResult());
                 }
                 Log.i("MainActivity","test message "+b.getText());
             }
@@ -92,8 +94,11 @@ public class MainActivity extends AppCompatActivity {
         }
         listRandom.add(goodResult);
 
+        // rendre la liste des reponses aléatoires
         Collections.shuffle(listRandom);
 
         return listRandom;
     }
+
+
 }

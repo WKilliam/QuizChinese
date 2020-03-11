@@ -93,12 +93,4 @@ public class Question implements Parcelable {
     }
 
 
-    private Question easy1 = new Question("Que signifie ce caractère ?","Voiture", R.drawable.car, 0);
-    private Question easy2 = new Question("Que signifie ce caractère ?","Feu", R.drawable.fire, 0);
-    private Question easy3 = new Question("Que signifie ce caractère ?","Forêt", R.drawable.forest, 0);
-    private Question easy4 = new Question("Que signifie ce caractère ?","Lune", R.drawable.moon, 0);
-    private Question easy5 = new Question("Que signifie ce caractère ?","Montagne", R.drawable.mountain, 0);
-    private Question easy6 = new Question("Que signifie ce caractère ?","Soleil", R.drawable.sun, 0);
-    private Question easy7 = new Question("Que signifie ce caractère ?","Eau", R.drawable.water, 0);
-
 }
