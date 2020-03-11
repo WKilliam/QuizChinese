@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         radom.add("tata");
 
         TextView viewById = findViewById(R.id.boxQuestion);
-
+       // viewById.setText(question.getQuestion());
         RadioButton choice1 = findViewById(R.id.Choice1);
 
         RadioButton choice2 = findViewById(R.id.Choice2);
