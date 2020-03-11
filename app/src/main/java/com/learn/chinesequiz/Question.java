@@ -3,23 +3,21 @@ package com.learn.chinesequiz;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class Question implements Parcelable {
 
     private String question;
     private String goodResult;
-    private String badResult;
-    private String badResult1;
-    private String badResult2;
     private int level;
     private int picture;
     private int sound;
 
-    public Question(String question, String goodResult, String badResult, String badResult1, String badResult2, int level, int picture, int sound) {
+    public Question(String question, String goodResult, int level, int picture, int sound) {
         this.question = question;
         this.goodResult = goodResult;
-        this.badResult = badResult;
-        this.badResult1 = badResult1;
-        this.badResult2 = badResult2;
         this.level = level;
         this.picture = picture;
         this.sound = sound;
@@ -28,9 +26,6 @@ public class Question implements Parcelable {
     protected Question(Parcel in) {
         question = in.readString();
         goodResult = in.readString();
-        badResult = in.readString();
-        badResult1 = in.readString();
-        badResult2 = in.readString();
         level = in.readInt();
         picture = in.readInt();
         sound = in.readInt();
@@ -40,9 +35,6 @@ public class Question implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(question);
         dest.writeString(goodResult);
-        dest.writeString(badResult);
-        dest.writeString(badResult1);
-        dest.writeString(badResult2);
         dest.writeInt(level);
         dest.writeInt(picture);
         dest.writeInt(sound);
@@ -65,24 +57,11 @@ public class Question implements Parcelable {
         }
     };
 
-    public String getQuestion() {
-        return question;
-    }
-
     public String getGoodResult() {
         return goodResult;
     }
 
-    public String getBadResult1() {
-        return badResult1;
+    public String getQuestion() {
+        return question;
     }
-
-    public String getBadResult() {
-        return badResult;
-    }
-
-    public String getBadResult2() {
-        return badResult2;
-    }
-
 }
