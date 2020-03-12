@@ -1,5 +1,8 @@
 package com.learn.chinesequiz;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +24,13 @@ public class QuestionHelper {
 
     public static ArrayList<Question> getMediumQuestions() {
         ArrayList<Question> easyList = new ArrayList<>();
-        easyList.add(new Question("Que signifie ce caractère ?", "Voiture", R.drawable.car, 0));
-        easyList.add(new Question("Que signifie ce caractère ?", "Feu", R.drawable.fire, 0));
-        easyList.add(new Question("Que signifie ce caractère ?", "Forêt", R.drawable.forest, 0));
-        easyList.add(new Question("Que signifie ce caractère ?", "Lune", R.drawable.moon, 0));
-        easyList.add(new Question("Que signifie ce caractère ?", "Montagne", R.drawable.mountain, 0));
-        easyList.add(new Question("Que signifie ce caractère ?", "Soleil", R.drawable.sun, 0));
-        easyList.add(new Question("Que signifie ce caractère ?", "Eau", R.drawable.water, 0));
+        easyList.add(new Question("Que signifie ce caractère 1 ?", "Voiture", R.drawable.car, 0));
+        easyList.add(new Question("Que signifie ce caractère 2 ?", "Feu", R.drawable.fire, 0));
+        easyList.add(new Question("Que signifie ce caractère 3 ?", "Forêt", R.drawable.forest, 0));
+        easyList.add(new Question("Que signifie ce caractère 4 ?", "Lune", R.drawable.moon, 0));
+        easyList.add(new Question("Que signifie ce caractère 5 ?", "Montagne", R.drawable.mountain, 0));
+        easyList.add(new Question("Que signifie ce caractère 6 ?", "Soleil", R.drawable.sun, 0));
+        easyList.add(new Question("Que signifie ce caractère 7 ?", "Eau", R.drawable.water, 0));
         return easyList;
     }
 
@@ -46,7 +49,5 @@ public class QuestionHelper {
 
         return wrongResponses;
     }
-
-
 
 }

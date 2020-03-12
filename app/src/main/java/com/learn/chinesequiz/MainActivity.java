@@ -2,6 +2,7 @@ package com.learn.chinesequiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,60 +13,78 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private int value;
+    private int count=0;
+    private ArrayList<Question> mediumQuestions;
+    private ArrayList<String> wrongMediumResponses;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent srcintent = getIntent();
+        String difficulty = srcintent.getStringExtra("difficulty");
 
-        final Question question = new Question("combien fait 2x2 ?", "4", 0);
+        this.value=0;
 
-        ;
+        if(difficulty.equals("easy")){
+            Log.i("MainActivity","test : "+ difficulty);
+            this.mediumQuestions = QuestionHelper.getMediumQuestions();
+            this.wrongMediumResponses = QuestionHelper.getWrongMediumResponses();
+            Collections.shuffle(mediumQuestions);
+            playQuiz(mediumQuestions,wrongMediumResponses,getValue(),this.count);
+        }
+        else if(difficulty.equals("medium")){
 
-        ArrayList<String> listProposition = creatListRandom(question.getGoodResult(), QuestionHelper.getWrongMediumResponses());
 
-        //affiche la question
-        TextView viewById = findViewById(R.id.boxQuestion);
-        viewById.setText(question.getQuestion());
 
-        //affiche les choix en radio( en dur)
+        }else if(difficulty.equals("hard")){
+
+
+        }
+    }
+
+    public void playQuiz(ArrayList<Question> questions,ArrayList<String> wrongResponses,int index,int count){
+
+
+        int sizeListQuestion = questions.size();
+
+
+        //Question question = QuestionHelper.getMediumQuestions().get(value);
+
+        TextView questionBox = findViewById(R.id.boxQuestion);
+        questionBox.setText(questions.get(this.value).getQuestion());
+
+
+        String goodResult = questions.get(this.value).getGoodResult();
+
+        ArrayList<String> listProposition = creatListRandom(goodResult,wrongResponses);
+
         RadioButton choice1 = findViewById(R.id.Choice1);
-        choice1.setText(listProposition.get(0));
         RadioButton choice2 = findViewById(R.id.Choice2);
-        choice2.setText(listProposition.get(1));
         RadioButton choice3 = findViewById(R.id.Choice3);
-        choice3.setText(listProposition.get(2));
-
         Button submitButton = findViewById(R.id.Submit);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                RadioGroup viewById2 = findViewById(R.id.RadioGroup);
 
-                int checkedRadioButtonId = viewById2.getCheckedRadioButtonId();
+        choice1.setText(listProposition.get(0));
 
-                RadioButton b =findViewById(checkedRadioButtonId);
+        choice2.setText(listProposition.get(1));
 
-                if(b.getText().equals(question.getGoodResult())){
-                    TextView viewById3 = findViewById(R.id.resultTextView);
-                    viewById3.setText("Bonne réponse !");
-                }else{
-                    TextView viewById3 = findViewById(R.id.resultTextView);
-                    viewById3.setText("Raté. La bonne réponse est : " + question.getGoodResult());
-                }
-                Log.i("MainActivity","test message "+b.getText());
-            }
-        });
+        choice3.setText(listProposition.get(2));
+
+
+
+        submitButton.setOnClickListener(this);
 
 
     }
+
 
     /**
      *
@@ -95,5 +114,47 @@ public class MainActivity extends AppCompatActivity {
         Collections.shuffle(listRandom);
 
         return listRandom;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.Submit:
+
+                RadioGroup viewById2 = findViewById(R.id.RadioGroup);
+
+                int checkedRadioButtonId = viewById2.getCheckedRadioButtonId();
+
+                RadioButton b =findViewById(checkedRadioButtonId);
+
+
+
+                TextView questionBox = findViewById(R.id.boxQuestion);
+                questionBox.setText(this.mediumQuestions.get(this.value).getQuestion());
+
+                //this.mediumQuestions = QuestionHelper.getMediumQuestions();
+
+
+
+                String goodResult = this.mediumQuestions.get(this.value).getGoodResult();
+
+
+                if(b.getText().equals(goodResult)){
+                    TextView viewById3 = findViewById(R.id.resultTextView);
+                    viewById3.setText("Bonne réponse !");
+                    this.value=this.value+1;
+                }else{
+                    TextView viewById3 = findViewById(R.id.resultTextView);
+                    viewById3.setText("Raté. La bonne réponse est : " + goodResult);
+                    this.value=this.value+1;
+                }
+                TextView viewById = findViewById(R.id.boxTest);
+                viewById.setText("test : "+this.value);
+        }
+    }
+
+    public int getValue() {
+        return value;
     }
 }
