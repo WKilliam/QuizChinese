@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,8 +21,8 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int index;
-    private ArrayList<Question> mediumQuestions;
-    private ArrayList<String> wrongMediumResponses;
+    private int counter;
+    private String difficulty;
     private ArrayList<String> wrongAnswerList;
     private ArrayList<Question> questionList;
 
@@ -36,18 +37,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.index = srcintent.getIntExtra("index",0);
         this.wrongAnswerList = srcintent.getStringArrayListExtra("Wrong");
         this.questionList = srcintent.getParcelableArrayListExtra("difficulty");
+        this.difficulty = srcintent.getStringExtra("difficultyString");
 
         // ici si on selection rien ça ne pête pas
         // quand on n'a pas selectioner le bouton sumit n'affiche pas
         // une fois on a selectioner le bouton sera visible
-        Button submitButton = findViewById(R.id.Submit);
-        RadioGroup viewById2 = findViewById(R.id.RadioGroup);
+        //Button submitButton = findViewById(R.id.Submit);
+        //RadioGroup viewById2 = findViewById(R.id.RadioGroup);
 
         //if(!(viewById2.getCheckedRadioButtonId()== -1)) {
 
+        Button submitButton = findViewById(R.id.Submit);
+        playInit(this.questionList, this.wrongAnswerList);
+        submitButton.setOnClickListener(this);
 
 
-        start();
+        //start();
 
     }
 
@@ -97,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 TextView viewById1 = findViewById(R.id.Submit);
 
+
                 if(viewById1.getText().equals("Continuer")){
 
                     intent.putStringArrayListExtra("Wrong", this.wrongAnswerList);
@@ -113,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ArrayList<Question> easylist = srcintent.getParcelableArrayListExtra("difficulty");
 
 
+                    int size = easylist.size();
                     String goodResult = easylist.get(index).getGoodResult();
 
                     RadioGroup viewById2 = findViewById(R.id.RadioGroup);
@@ -127,8 +134,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (b.getText().equals(goodResult)) {
                         TextView viewById3 = findViewById(R.id.resultTextView);
                         viewById3.setText("Bonne réponse !");
-
+                        this.counter=this.counter+1;
                         this.index = this.index + 1;
+
+                        if(this.index==size){
+
+                            Log.i("MainActivity","@@@@@@@@@@@@@@@@@@@@@@@@@"+size+this.index);
+                            Intent score = new Intent(this,Score.class);
+                            score.putExtra("Size",size);
+                            score.putExtra("CounterGood",this.counter);
+                            score.putExtra("difficulty",this.difficulty);
+                            startActivity(score);
+                            finish();
+                            return;
+                        }
+
+
 
                         submitButton.setText("Continuer");
 
@@ -139,6 +160,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         TextView viewById3 = findViewById(R.id.resultTextView);
                         viewById3.setText("Raté. La bonne réponse est : " + goodResult);
                         this.index = this.index + 1;
+
+                        if(this.index==size){
+                            Intent score = new Intent(this,Score.class);
+                            score.putExtra("Size",size);
+                            score.putExtra("CounterGood",this.counter);
+                            score.putExtra("difficulty",this.difficulty);
+                            startActivity(score);
+                            finish();
+                            return;
+                        }
+
+
                         submitButton.setText("Continuer");
 
                     }

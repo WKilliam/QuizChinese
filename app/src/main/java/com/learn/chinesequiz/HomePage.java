@@ -67,15 +67,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                     Collections.shuffle(easyQuestions);
 
-
-
-                    int value=1;
-
-
-
                     intent.putStringArrayListExtra("Wrong",wrongEasyResponses);
                     intent.putParcelableArrayListExtra("difficulty",easyQuestions);
-                    intent.putExtra("value",value);
+                    intent.putExtra("difficultyString","easy");
                     intent.putExtra("index",0);
 
                     startActivity(intent);
