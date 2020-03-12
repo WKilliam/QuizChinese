@@ -38,7 +38,7 @@ public class QuestionHelper {
         mediumList.add(new Question("Que signifie ce caractère ?", "maison", R.drawable.home, 0));
         mediumList.add(new Question("Que signifie ce caractère ?", "oiseau", R.drawable.bird, 0));
         mediumList.add(new Question("Que signifie ce caractère ?", "pluie", R.drawable.rain, 0));
-        mediumList.add(new Question("Que signifie ce caractère ?", "pays", R.drawable.countre, 0));
+        mediumList.add(new Question("Que signifie ce caractère ?", "pays", R.drawable.pays, 0));
         mediumList.add(new Question("Que signifie ce caractère ?", "chat", R.drawable.cat, 0));
         mediumList.add(new Question("Que signifie ce caractère ?", "nuage", R.drawable.cloud, 0));
         mediumList.add(new Question("Que signifie ce caractère ?", "neige", R.drawable.snow, 0));
