@@ -2,12 +2,13 @@ package com.learn.chinesequiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,8 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int index;
     private ArrayList<Question> mediumQuestions;
     private ArrayList<String> wrongMediumResponses;
-    private ArrayList<String> easyWrong;
-    private ArrayList<Question> easylist;
+    private ArrayList<String> wrongAnswerList;
+    private ArrayList<Question> questionList;
 
 
     @Override
@@ -33,16 +34,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent srcintent = getIntent();
 
         this.index = srcintent.getIntExtra("index",0);
-        easyWrong = srcintent.getStringArrayListExtra("Wrong");
-        easylist = srcintent.getParcelableArrayListExtra("difficulty");
+        this.wrongAnswerList = srcintent.getStringArrayListExtra("Wrong");
+        this.questionList = srcintent.getParcelableArrayListExtra("difficulty");
 
-        playOneInit(easylist, easyWrong);
-
+        // ici si on selection rien ça ne pête pas
+        // quand on n'a pas selectioner le bouton sumit n'affiche pas
+        // une fois on a selectioner le bouton sera visible
         Button submitButton = findViewById(R.id.Submit);
+        RadioGroup viewById2 = findViewById(R.id.RadioGroup);
+
+        //if(!(viewById2.getCheckedRadioButtonId()== -1)) {
+
+
+
+        start();
+
+    }
+
+    public void start (){
+        Button submitButton = findViewById(R.id.Submit);
+        playInit(this.questionList, this.wrongAnswerList);
         submitButton.setOnClickListener(this);
     }
 
-    public void playOneInit(ArrayList<Question> questions,ArrayList<String> wrongResponses){
+    public void playInit(ArrayList<Question> questions, ArrayList<String> wrongResponses){
 
 
         TextView questionBox = findViewById(R.id.boxQuestion);
@@ -56,6 +71,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         RadioButton choice2 = findViewById(R.id.Choice2);
         RadioButton choice3 = findViewById(R.id.Choice3);
 
+        ImageView viewById1 = findViewById(R.id.imageView);
+
+        viewById1.setImageResource(questions.get(this.index).getPicture());
+
         choice1.setText(listProposition.get(0));
 
         choice2.setText(listProposition.get(1));
@@ -67,96 +86,64 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+        Intent intent = new Intent(this, MainActivity.class);
+
         switch (v.getId()){
+
+
             case R.id.Submit:
 
-                Log.i("MainActivity","coucou : : : : : : : :");
 
+                TextView viewById1 = findViewById(R.id.Submit);
 
-                Intent srcintent = getIntent();
-                ArrayList<String> easyWrong = srcintent.getStringArrayListExtra("Wrong");
-                ArrayList<Question> easylist = srcintent.getParcelableArrayListExtra("difficulty");
+                if(viewById1.getText().equals("Continuer")){
 
-                Log.i("MainActivity","++++++++++++++++++++++++++++++++++++");
-
-                String goodResult = easylist.get(index).getGoodResult();
-
-                RadioGroup viewById2 = findViewById(R.id.RadioGroup);
-
-                int checkedRadioButtonId = viewById2.getCheckedRadioButtonId();
-
-                RadioButton b =findViewById(checkedRadioButtonId);
-
-                Log.i("MainActivity","coucou "+b+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-
-                TextView submitButton = findViewById(R.id.Submit);
-
-                if(b.getText().equals(goodResult)){
-                    TextView viewById3 = findViewById(R.id.resultTextView);
-                    viewById3.setText("Bonne réponse !");
-
-                    Intent intent = new Intent(this, MainActivity.class);
-
-
-
-                    //playQuiz(easylist, easyWrong, index);
-                    this.index = this.index+1 ;
-
-                    intent.putStringArrayListExtra("Wrong",easyWrong);
-                    intent.putParcelableArrayListExtra("difficulty",easylist);
-                    //intent.putExtra("value",value);
+                    intent.putStringArrayListExtra("Wrong", this.wrongAnswerList);
+                    intent.putParcelableArrayListExtra("difficulty", this.questionList);
                     intent.putExtra("index",this.index);
-
                     startActivity(intent);
 
-                    submitButton.setText("Suivante");
-                    Log.i("MainActivity","coucou §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ "+this.index);
 
-                }else{
+                }else {
 
-                    Intent intent = new Intent(this, MainActivity.class);
-                    
-                    TextView viewById3 = findViewById(R.id.resultTextView);
-                    viewById3.setText("Raté. La bonne réponse est : " + goodResult);
-                    //playQuiz(easylist, easyWrong, index);
-                    this.index = this.index +1;
-                    intent.putStringArrayListExtra("Wrong",easyWrong);
-                    intent.putParcelableArrayListExtra("difficulty",easylist);
-                    //intent.putExtra("value",value);
-                    intent.putExtra("index",this.index);
 
-                    startActivity(intent);
+                    Intent srcintent = getIntent();
+                    ArrayList<String> easyWrong = srcintent.getStringArrayListExtra("Wrong");
+                    ArrayList<Question> easylist = srcintent.getParcelableArrayListExtra("difficulty");
 
-                    submitButton.setText("Suivante");
-                    Log.i("MainActivity","coucou ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ "+this.index);
+
+                    String goodResult = easylist.get(index).getGoodResult();
+
+                    RadioGroup viewById2 = findViewById(R.id.RadioGroup);
+
+                    int checkedRadioButtonId = viewById2.getCheckedRadioButtonId();
+
+                    RadioButton b = findViewById(checkedRadioButtonId);
+
+
+                    TextView submitButton = findViewById(R.id.Submit);
+
+                    if (b.getText().equals(goodResult)) {
+                        TextView viewById3 = findViewById(R.id.resultTextView);
+                        viewById3.setText("Bonne réponse !");
+
+                        this.index = this.index + 1;
+
+                        submitButton.setText("Continuer");
+
+                    } else {
+
+                        //Intent intent = new Intent(this, MainActivity.class);
+
+                        TextView viewById3 = findViewById(R.id.resultTextView);
+                        viewById3.setText("Raté. La bonne réponse est : " + goodResult);
+                        this.index = this.index + 1;
+                        submitButton.setText("Continuer");
+
+                    }
                 }
-
-                TextView viewById = findViewById(R.id.boxTest);
-                viewById.setText("test : "+this.index);
         }
-    }
-
-
-    public void playQuiz(ArrayList<Question> questions,ArrayList<String> wrongResponses,int index){
-
-
-        TextView questionBox = findViewById(R.id.boxQuestion);
-        questionBox.setText(questions.get(index).getQuestion());
-
-        String goodResult = questions.get(index).getGoodResult();
-
-        ArrayList<String> listProposition = creatListRandom(goodResult,wrongResponses);
-
-        RadioButton choice1 = findViewById(R.id.Choice1);
-        RadioButton choice2 = findViewById(R.id.Choice2);
-        RadioButton choice3 = findViewById(R.id.Choice3);
-
-        choice1.setText(listProposition.get(0));
-
-        choice2.setText(listProposition.get(1));
-
-        choice3.setText(listProposition.get(2));
-
     }
 
 
