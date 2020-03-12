@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         listRandom.add(goodResult);
 
+        // rendre la liste des reponses aléatoires
         Collections.shuffle(listRandom);
 
         return listRandom;
