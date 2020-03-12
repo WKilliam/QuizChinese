@@ -36,7 +36,7 @@ public class QuestionHelper {
         return easyWrongResponses;
     }
 
-    public static List<Question> getMediumQuestions() {
+    public static ArrayList<Question> getMediumQuestions() {
         ArrayList<Question> mediumList = new ArrayList<>();
         mediumList.add(new Question("Que signifie ce caractère ?", "maison", R.drawable.home, 0));
         mediumList.add(new Question("Que signifie ce caractère ?", "oiseau", R.drawable.bird, 0));

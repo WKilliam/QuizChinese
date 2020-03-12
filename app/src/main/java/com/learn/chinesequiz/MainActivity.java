@@ -28,28 +28,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent srcintent = getIntent();
-        String difficulty = srcintent.getStringExtra("difficulty");
-
-        this.value=0;
-
-        if(difficulty.equals("easy")){
-            Log.i("MainActivity","test : "+ difficulty);
-            this.mediumQuestions = QuestionHelper.getMediumQuestions();
-            this.wrongMediumResponses = QuestionHelper.getWrongMediumResponses();
-            Collections.shuffle(mediumQuestions);
-            playQuiz(mediumQuestions,wrongMediumResponses,getValue(),this.count);
-        }
-        else if(difficulty.equals("medium")){
+        srcintent.getStringExtra("easyList");
+        srcintent.getStringExtra("easyWrong");
 
 
-
-        }else if(difficulty.equals("hard")){
-
-
-        }
+        Button submitButton = findViewById(R.id.Submit);
+        submitButton.setOnClickListener(this);
     }
 
-    public void playQuiz(ArrayList<Question> questions,ArrayList<String> wrongResponses,int index,int count){
+    public void playQuiz(ArrayList<Question> questions,ArrayList<String> wrongResponses){
 
 
         int sizeListQuestion = questions.size();
@@ -64,11 +51,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String goodResult = questions.get(this.value).getGoodResult();
 
         ArrayList<String> listProposition = creatListRandom(goodResult,wrongResponses);
+        Log.i("MainActivity","liste de propositions" +listProposition);
 
         RadioButton choice1 = findViewById(R.id.Choice1);
         RadioButton choice2 = findViewById(R.id.Choice2);
         RadioButton choice3 = findViewById(R.id.Choice3);
-        Button submitButton = findViewById(R.id.Submit);
+
 
 
 
@@ -80,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        submitButton.setOnClickListener(this);
+
 
 
     }
@@ -145,10 +133,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     TextView viewById3 = findViewById(R.id.resultTextView);
                     viewById3.setText("Bonne réponse !");
                     this.value=this.value+1;
+                    playQuiz(mediumQuestions,wrongMediumResponses);
                 }else{
                     TextView viewById3 = findViewById(R.id.resultTextView);
                     viewById3.setText("Raté. La bonne réponse est : " + goodResult);
                     this.value=this.value+1;
+                    playQuiz(mediumQuestions,wrongMediumResponses);
                 }
                 TextView viewById = findViewById(R.id.boxTest);
                 viewById.setText("test : "+this.value);

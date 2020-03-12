@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -53,15 +55,20 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                     break;
                 case R.id.easybtn:
-                    intent.putExtra("difficulty","easy");
+                    ArrayList<Question> easyQuestions = QuestionHelper.getEasyQuestions();
+                    ArrayList<String> wrongEasyResponses = QuestionHelper.getWrongEasyResponses();
+                    intent.putExtra("easylist",easyQuestions);
+                    intent.putExtra("easyWrong",wrongEasyResponses);
                     startActivity(intent);
                     break;
                 case R.id.mediumBtn:
-                    intent.putExtra("difficulty","medium");
+                    ArrayList<Question> mediumQuestions = QuestionHelper.getMediumQuestions();
+                    ArrayList<String> wrongMediumResponses1 = QuestionHelper.getWrongMediumResponses();
                     startActivity(intent);
                     break;
                 case R.id.hardBtn:
-                    intent.putExtra("difficulty","hard");
+                    ArrayList<Question> hardQuestions = QuestionHelper.getHardQuestions();
+                    ArrayList<String> wrongHardResponses = QuestionHelper.getWrongHardResponses();
                     startActivity(intent);
                     break;
 
