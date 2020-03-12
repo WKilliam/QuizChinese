@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,6 +17,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
 
         Button buttonStart = findViewById(R.id.startBtn);
         Button viewEasyBtn = findViewById(R.id.easybtn);
@@ -37,7 +39,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+
+
         Intent intent = new Intent(HomePage.this, MainActivity.class);
+
             switch (v.getId()){
                 case R.id.startBtn:
 
@@ -55,11 +60,26 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                     break;
                 case R.id.easybtn:
+
                     ArrayList<Question> easyQuestions = QuestionHelper.getEasyQuestions();
                     ArrayList<String> wrongEasyResponses = QuestionHelper.getWrongEasyResponses();
-                    intent.putExtra("easylist",easyQuestions);
-                    intent.putExtra("easyWrong",wrongEasyResponses);
+
+
+                    Collections.shuffle(easyQuestions);
+
+
+
+                    int value=1;
+
+
+
+                    intent.putStringArrayListExtra("Wrong",wrongEasyResponses);
+                    intent.putParcelableArrayListExtra("difficulty",easyQuestions);
+                    intent.putExtra("value",value);
+                    intent.putExtra("index",0);
+
                     startActivity(intent);
+
                     break;
                 case R.id.mediumBtn:
                     ArrayList<Question> mediumQuestions = QuestionHelper.getMediumQuestions();
