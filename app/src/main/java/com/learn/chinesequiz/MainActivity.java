@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.wrongAnswerList = srcintent.getStringArrayListExtra("Wrong");
         this.questionList = srcintent.getParcelableArrayListExtra("difficulty");
         this.difficulty = srcintent.getStringExtra("difficultyString");
+        this.counter = srcintent.getIntExtra("counter",0);
 
         // ici si on selection rien ça ne pête pas
         // quand on n'a pas selectioner le bouton sumit n'affiche pas
@@ -94,88 +95,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = new Intent(this, MainActivity.class);
 
-        switch (v.getId()){
+        if (v.getId() == R.id.Submit) {
+            TextView viewById1 = findViewById(R.id.Submit);
 
 
-            case R.id.Submit:
+            if (viewById1.getText().equals("Continuer")) {
+
+                intent.putStringArrayListExtra("Wrong", this.wrongAnswerList);
+                intent.putParcelableArrayListExtra("difficulty", this.questionList);
+                intent.putExtra("index", this.index);
+                intent.putExtra("counter", this.counter);
+                startActivity(intent);
 
 
-                TextView viewById1 = findViewById(R.id.Submit);
+            } else {
 
+                Intent srcintent = getIntent();
+                ArrayList<Question> easylist = srcintent.getParcelableArrayListExtra("difficulty");
+                String goodResult = easylist.get(index).getGoodResult();
+                RadioGroup viewById2 = findViewById(R.id.RadioGroup);
+                int checkedRadioButtonId = viewById2.getCheckedRadioButtonId();
+                RadioButton b = findViewById(checkedRadioButtonId);
+                TextView submitButton = findViewById(R.id.Submit);
 
-                if(viewById1.getText().equals("Continuer")){
+                if (b.getText().equals(goodResult)) {
+                    TextView viewById3 = findViewById(R.id.resultTextView);
+                    viewById3.setText("Bonne réponse !");
+                    this.counter = this.counter + 1;
+                    this.index = this.index + 1;
+                    isEndGame();
+                    submitButton.setText("Continuer");
 
-                    intent.putStringArrayListExtra("Wrong", this.wrongAnswerList);
-                    intent.putParcelableArrayListExtra("difficulty", this.questionList);
-                    intent.putExtra("index",this.index);
-                    startActivity(intent);
+                } else {
 
+                    TextView viewById3 = findViewById(R.id.resultTextView);
+                    viewById3.setText("Raté. La bonne réponse est : " + goodResult);
+                    this.index = this.index + 1;
+                    isEndGame();
+                    submitButton.setText("Continuer");
 
-                }else {
-
-
-                    Intent srcintent = getIntent();
-                    ArrayList<String> easyWrong = srcintent.getStringArrayListExtra("Wrong");
-                    ArrayList<Question> easylist = srcintent.getParcelableArrayListExtra("difficulty");
-
-
-                    int size = easylist.size();
-                    String goodResult = easylist.get(index).getGoodResult();
-
-                    RadioGroup viewById2 = findViewById(R.id.RadioGroup);
-
-                    int checkedRadioButtonId = viewById2.getCheckedRadioButtonId();
-
-                    RadioButton b = findViewById(checkedRadioButtonId);
-
-
-                    TextView submitButton = findViewById(R.id.Submit);
-
-                    if (b.getText().equals(goodResult)) {
-                        TextView viewById3 = findViewById(R.id.resultTextView);
-                        viewById3.setText("Bonne réponse !");
-                        this.counter=this.counter+1;
-                        this.index = this.index + 1;
-
-                        if(this.index==size){
-
-                            Log.i("MainActivity","@@@@@@@@@@@@@@@@@@@@@@@@@"+size+this.index);
-                            Intent score = new Intent(this,Score.class);
-                            score.putExtra("Size",size);
-                            score.putExtra("CounterGood",this.counter);
-                            score.putExtra("difficulty",this.difficulty);
-                            startActivity(score);
-                            finish();
-                            return;
-                        }
-
-
-
-                        submitButton.setText("Continuer");
-
-                    } else {
-
-                        //Intent intent = new Intent(this, MainActivity.class);
-
-                        TextView viewById3 = findViewById(R.id.resultTextView);
-                        viewById3.setText("Raté. La bonne réponse est : " + goodResult);
-                        this.index = this.index + 1;
-
-                        if(this.index==size){
-                            Intent score = new Intent(this,Score.class);
-                            score.putExtra("Size",size);
-                            score.putExtra("CounterGood",this.counter);
-                            score.putExtra("difficulty",this.difficulty);
-                            startActivity(score);
-                            finish();
-                            return;
-                        }
-
-
-                        submitButton.setText("Continuer");
-
-                    }
                 }
+            }
+        }
+    }
+
+    private void isEndGame() {
+        Intent srcintent = getIntent();
+        ArrayList<Question> easylist = srcintent.getParcelableArrayListExtra("difficulty");
+        int size = easylist.size();
+        if(this.index==size){
+            Intent score = new Intent(this,ScorePage.class);
+            score.putExtra("Size",size);
+            score.putExtra("CounterGood",this.counter);
+            score.putExtra("difficulty",this.difficulty);
+            startActivity(score);
+            finish();
         }
     }
 

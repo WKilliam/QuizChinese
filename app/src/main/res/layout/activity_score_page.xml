@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScorePage">
+
+    <TextView
+        android:id="@+id/difficulty_quiz"
+        android:layout_width="281dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="80dp"
+        android:gravity="center_horizontal"
+        android:text="Difficulté"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/score_purcent"
+        android:layout_width="379dp"
+        android:layout_height="199dp"
+        android:gravity="center_horizontal"
+        android:text="100%"
+        android:textAlignment="center"
+        android:textSize="150sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/score_good_total"
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toStartOf="@+id/score_good_total"
+        app:layout_constraintTop_toBottomOf="@+id/score_good_total" />
+
+    <Button
+        android:id="@+id/home_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quitter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/score_purcent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/score_purcent"
+        app:layout_constraintTop_toBottomOf="@+id/score_purcent"
+        app:layout_constraintVertical_bias="0.325" />
+
+    <TextView
+        android:id="@+id/score_good_total"
+        android:layout_width="235dp"
+        android:layout_height="170dp"
+        android:gravity="center_horizontal"
+        android:text="0/0"
+        android:textAlignment="center"
+        android:textSize="100sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/difficulty_quiz"
+        app:layout_constraintStart_toStartOf="@+id/difficulty_quiz"
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_quiz" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
