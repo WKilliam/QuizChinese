@@ -11,8 +11,8 @@ public class QuestionHelper {
     public static ArrayList<Question> getEasyQuestions() {
         ArrayList<Question> easyList = new ArrayList<>();
         easyList.add(new Question("Cette image signifie quel caractère?", "车", R.drawable.car, 0));
-        //easyList.add(new Question("Cette image signifie quel caractère?", "火", R.drawable.fire, 0));
-        //easyList.add(new Question("Cette image signifie quel caractère?", "森", R.drawable.forest, 0));
+        easyList.add(new Question("Cette image signifie quel caractère?", "火", R.drawable.fire, 0));
+        easyList.add(new Question("Cette image signifie quel caractère?", "森", R.drawable.forest, 0));
         //easyList.add(new Question("Cette image signifie quel caractère?", "月", R.drawable.moon, 0));
         //easyList.add(new Question("Cette image signifie quel caractère?", "山", R.drawable.mountain, 0));
         //easyList.add(new Question("Cette image signifie quel caractère?", "日", R.drawable.sun, 0));
