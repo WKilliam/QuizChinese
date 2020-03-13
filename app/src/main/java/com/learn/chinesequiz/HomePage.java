@@ -1,7 +1,9 @@
 package com.learn.chinesequiz;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,19 +19,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-
         Button buttonStart = findViewById(R.id.startBtn);
-        Button viewEasyBtn = findViewById(R.id.easybtn);
-        Button viewMediumBtn = findViewById(R.id.mediumBtn);
-        Button viewHardBtn = findViewById(R.id.hardBtn);
-
-
-
-        viewEasyBtn.setVisibility(View.INVISIBLE);
-        viewMediumBtn.setVisibility(View.INVISIBLE);
-        viewHardBtn.setVisibility(View.INVISIBLE);
-
         buttonStart.setOnClickListener(this);
 
     }
@@ -41,51 +31,48 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
 
 
-        Intent intent = new Intent(HomePage.this, MainActivity.class);
+
 
             switch (v.getId()){
                 case R.id.startBtn:
 
-                    Button buttonStart = findViewById(R.id.startBtn);
-                    Button viewEasyBtn = findViewById(R.id.easybtn);
-                    Button viewMediumBtn = findViewById(R.id.mediumBtn);
-                    Button viewHardBtn = findViewById(R.id.hardBtn);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Choisir une difficulté :");
+                    String[] difficult = {"FACILE","NORMAL","DIFFICILE"};
+                    builder.setItems(difficult, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(HomePage.this, MainActivity.class);
 
-                    buttonStart.setVisibility(View.INVISIBLE);
-                    viewEasyBtn.setVisibility(View.VISIBLE);
-                    viewMediumBtn.setVisibility(View.VISIBLE);
-                    viewHardBtn.setVisibility(View.VISIBLE);
+                            switch (which) {
 
-                    viewEasyBtn.setOnClickListener(this);
+                                case 0: // FACILE
+                                    ArrayList<Question> easyQuestions = QuestionHelper.getEasyQuestions();
+                                    ArrayList<String> wrongEasyResponses = QuestionHelper.getWrongEasyResponses();
+                                    Collections.shuffle(easyQuestions);
+                                    intent.putStringArrayListExtra("Wrong",wrongEasyResponses);
+                                    intent.putParcelableArrayListExtra("difficulty",easyQuestions);
+                                    intent.putExtra("difficultyString","easy");
+                                    intent.putExtra("index",0);
 
+                                    startActivity(intent);
+                                    break;
+                                case 1:
+                                    ArrayList<Question> mediumQuestions = QuestionHelper.getMediumQuestions();
+                                    ArrayList<String> wrongMediumResponses1 = QuestionHelper.getWrongMediumResponses();
+                                    startActivity(intent);
+                                    break;
+                                case 2:
+                                    ArrayList<Question> hardQuestions = QuestionHelper.getHardQuestions();
+                                    ArrayList<String> wrongHardResponses = QuestionHelper.getWrongHardResponses();
+                                    startActivity(intent);
+                                    break;
+                            }
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                     break;
-                case R.id.easybtn:
-
-                    ArrayList<Question> easyQuestions = QuestionHelper.getEasyQuestions();
-                    ArrayList<String> wrongEasyResponses = QuestionHelper.getWrongEasyResponses();
-
-
-                    Collections.shuffle(easyQuestions);
-
-                    intent.putStringArrayListExtra("Wrong",wrongEasyResponses);
-                    intent.putParcelableArrayListExtra("difficulty",easyQuestions);
-                    intent.putExtra("difficultyString","easy");
-                    intent.putExtra("index",0);
-
-                    startActivity(intent);
-
-                    break;
-                case R.id.mediumBtn:
-                    ArrayList<Question> mediumQuestions = QuestionHelper.getMediumQuestions();
-                    ArrayList<String> wrongMediumResponses1 = QuestionHelper.getWrongMediumResponses();
-                    startActivity(intent);
-                    break;
-                case R.id.hardBtn:
-                    ArrayList<Question> hardQuestions = QuestionHelper.getHardQuestions();
-                    ArrayList<String> wrongHardResponses = QuestionHelper.getWrongHardResponses();
-                    startActivity(intent);
-                    break;
-
             }
     }
 }

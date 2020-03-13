@@ -23,7 +23,7 @@
         android:layout_width="117dp"
         android:layout_height="46dp"
         android:layout_marginBottom="32dp"
-        android:text="Submit"
+        android:text="Valider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/resultTextView"
         app:layout_constraintStart_toStartOf="@+id/resultTextView" />
@@ -35,7 +35,7 @@
         android:layout_marginBottom="20dp"
         android:background="#02F44336"
         android:textColor="#F44336"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/Submit"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -83,9 +83,11 @@
 
     <TextView
         android:id="@+id/boxQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="369dp"
+        android:layout_height="31dp"
+        android:gravity="center"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
