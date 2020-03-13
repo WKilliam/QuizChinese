@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,15 @@ public class CurrencyQuestion extends AppCompatActivity {
 
         Intent srcintent = getIntent();
 
-        srcintent.getStringArrayListExtra("Wrong");
-        //ArrayList<Question> questionList = srcintent.getParcelableArrayListExtra("difficulty");
-        srcintent.getStringExtra("difficultyString");
+        String difficultycheck = srcintent.getStringExtra("difficultycheck");
 
-        currencie = QuestionHelper.getEasyQuestions();
-
-
+        if(difficultycheck.equals("EASY")){
+            currencie = QuestionHelper.getEasyQuestions();
+        }else if(difficultycheck.equals("MEDIUM")){
+            currencie = QuestionHelper.getMediumQuestions();
+        }else if(difficultycheck.equals("HARD")){
+            currencie = QuestionHelper.getHardQuestions();
+        }
 
         adapter = new CurrencyAdapte(currencie);
         RecyclerView recyclerView = findViewById(R.id.recyclerViewID);

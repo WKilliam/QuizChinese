@@ -34,7 +34,8 @@ public class CurrencyAdapte extends RecyclerView.Adapter<CurrencyAdapte.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Question currency = currencies.get(position);
         holder.viewImageQuestion.setImageResource(currency.getPicture());
-        holder.resultText.setText(currency.getQuestion() + " " + position);
+        holder.resultText.setText( "La réponse de la question est :" + currency.getGoodResult());
+        holder.difficultyText.setText(currency.getLevelS());
         //holder.itemView.setOnClickListener();
     }
 

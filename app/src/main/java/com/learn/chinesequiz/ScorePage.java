@@ -18,6 +18,7 @@ public class ScorePage extends AppCompatActivity {
 
         Intent scoreIntent = getIntent();
         String difficulty = scoreIntent.getStringExtra("difficulty");
+
         int goodAnswers = scoreIntent.getIntExtra("CounterGood", 0);
         int size =  scoreIntent.getIntExtra("Size", 0);
         Log.i("ScorePage","la difficulté est : " +difficulty);

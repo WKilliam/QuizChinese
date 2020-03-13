@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private int index;
     private int counter;
+
     private String difficulty;
     private ArrayList<String> wrongAnswerList;
     private ArrayList<Question> questionList;
@@ -35,39 +37,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent srcintent = getIntent();
 
         this.index = srcintent.getIntExtra("index",0);
+
         this.wrongAnswerList = srcintent.getStringArrayListExtra("Wrong");
         this.questionList = srcintent.getParcelableArrayListExtra("difficulty");
         this.difficulty = srcintent.getStringExtra("difficultyString");
         this.counter = srcintent.getIntExtra("counter",0);
 
-        // ici si on selection rien ça ne pête pas
-        // quand on n'a pas selectioner le bouton sumit n'affiche pas
-        // une fois on a selectioner le bouton sera visible
-        //Button submitButton = findViewById(R.id.Submit);
-        //RadioGroup viewById2 = findViewById(R.id.RadioGroup);
-
-        //if(!(viewById2.getCheckedRadioButtonId()== -1)) {
 
         Button submitButton = findViewById(R.id.Submit);
         playInit(this.questionList, this.wrongAnswerList);
         submitButton.setOnClickListener(this);
 
 
-        //start();
 
-    }
 
-    public void start (){
-        Button submitButton = findViewById(R.id.Submit);
-        playInit(this.questionList, this.wrongAnswerList);
-        submitButton.setOnClickListener(this);
     }
 
     public void playInit(ArrayList<Question> questions, ArrayList<String> wrongResponses){
+        /*ImageButton sound = findViewById(R.id.playSound);
+        sound.setVisibility(View.INVISIBLE);
+
+        if(this.difficulty.equals("DIFFICILE")){
+            sound.setVisibility(View.VISIBLE);
+            sound.setOnClickListener(this);
+        }*/
+
 
 
         TextView questionBox = findViewById(R.id.boxQuestion);
-        questionBox.setText(questions.get(this.index).getQuestion());
+        questionBox.setText("N°: "+(this.index + 1)+" " +questions.get(this.index).getQuestion());
+
 
         String goodResult = questions.get(this.index).getGoodResult();
 
@@ -95,6 +94,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = new Intent(this, MainActivity.class);
 
+        //switch (v.getId()){
+        //}
+
+
         if (v.getId() == R.id.Submit) {
             TextView viewById1 = findViewById(R.id.Submit);
 
@@ -105,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putParcelableArrayListExtra("difficulty", this.questionList);
                 intent.putExtra("index", this.index);
                 intent.putExtra("counter", this.counter);
+                //intent.putExtra("turn",this.numberTurn);
                 startActivity(intent);
 
 
@@ -123,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     viewById3.setText("Bonne réponse !");
                     this.counter = this.counter + 1;
                     this.index = this.index + 1;
+                    //this.numberTurn=this.numberTurn+1;
                     isEndGame();
                     submitButton.setText("Continuer");
 
@@ -131,11 +136,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     TextView viewById3 = findViewById(R.id.resultTextView);
                     viewById3.setText("Raté. La bonne réponse est : " + goodResult);
                     this.index = this.index + 1;
+                    //this.numberTurn=this.numberTurn+1;
                     isEndGame();
                     submitButton.setText("Continuer");
 
                 }
             }
+
         }
     }
 
