@@ -95,6 +95,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 case R.id.about:
 
                     Intent intent = new Intent(HomePage.this, AboutPage.class);
+
+                    intent.putExtra("Titre","A Propos");
+                    intent.putExtra("Team","ChinaTown");
+                    intent.putExtra("Name","by: Teddy, Kevin, Yuyuan");
                     startActivity(intent);
                     break;
 

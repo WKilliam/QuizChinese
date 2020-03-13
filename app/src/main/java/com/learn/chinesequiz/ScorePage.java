@@ -17,11 +17,11 @@ public class ScorePage extends AppCompatActivity {
         setContentView(R.layout.activity_score_page);
 
         Intent scoreIntent = getIntent();
-        String difficulty = scoreIntent.getStringExtra("difficulty");
+        String test = scoreIntent.getStringExtra("test");
 
         int goodAnswers = scoreIntent.getIntExtra("CounterGood", 0);
         int size =  scoreIntent.getIntExtra("Size", 0);
-        Log.i("ScorePage","la difficulté est : " +difficulty);
+        Log.i("ScorePage","la difficulté est : " +test);
 
         int scorePurcent = (int) (((float)goodAnswers/size) * 100.f);
 
@@ -29,7 +29,7 @@ public class ScorePage extends AppCompatActivity {
         TextView dpDifficulty = findViewById(R.id.difficulty_quiz);
         TextView dpScoreGoodTotal = findViewById(R.id.score_good_total);
         TextView dpScorePurcent = findViewById(R.id.score_purcent);
-        dpDifficulty.setText(difficulty);
+        dpDifficulty.setText(test);
         dpScoreGoodTotal.setText(goodAnswers+"/"+size);
         dpScorePurcent.setText(scorePurcent+"%");
 

@@ -46,8 +46,9 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/resultTextView"
-        app:layout_constraintEnd_toEndOf="@+id/playSound"
-        app:layout_constraintStart_toStartOf="@+id/playSound">
+        app:layout_constraintEnd_toEndOf="@+id/boxQuestion"
+        app:layout_constraintStart_toStartOf="@+id/boxQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/boxQuestion">
 
         <RadioButton
             android:id="@+id/Choice1"
@@ -90,16 +91,5 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <ImageButton
-        android:id="@+id/playSound"
-        android:layout_width="72dp"
-        android:layout_height="41dp"
-        android:background="#ccc"
-        app:layout_constraintBottom_toTopOf="@+id/RadioGroup"
-        app:layout_constraintEnd_toEndOf="@+id/boxQuestion"
-        app:layout_constraintStart_toStartOf="@+id/boxQuestion"
-        app:layout_constraintTop_toBottomOf="@+id/boxQuestion"
-        app:srcCompat="@android:drawable/ic_media_play" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

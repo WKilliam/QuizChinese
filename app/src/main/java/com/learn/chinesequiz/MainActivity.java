@@ -54,13 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void playInit(ArrayList<Question> questions, ArrayList<String> wrongResponses){
-        /*ImageButton sound = findViewById(R.id.playSound);
-        sound.setVisibility(View.INVISIBLE);
 
-        if(this.difficulty.equals("DIFFICILE")){
-            sound.setVisibility(View.VISIBLE);
-            sound.setOnClickListener(this);
-        }*/
 
 
 
@@ -94,11 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = new Intent(this, MainActivity.class);
 
-        //switch (v.getId()){
-        //}
 
+        switch (v.getId()) {
 
-        if (v.getId() == R.id.Submit) {
+            case R.id.Submit:
             TextView viewById1 = findViewById(R.id.Submit);
 
 
@@ -127,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     viewById3.setText("Bonne réponse !");
                     this.counter = this.counter + 1;
                     this.index = this.index + 1;
-                    //this.numberTurn=this.numberTurn+1;
                     isEndGame();
                     submitButton.setText("Continuer");
 
@@ -136,12 +128,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     TextView viewById3 = findViewById(R.id.resultTextView);
                     viewById3.setText("Raté. La bonne réponse est : " + goodResult);
                     this.index = this.index + 1;
-                    //this.numberTurn=this.numberTurn+1;
                     isEndGame();
                     submitButton.setText("Continuer");
 
                 }
             }
+            break;
 
         }
     }
@@ -155,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             score.putExtra("Size",size);
             score.putExtra("CounterGood",this.counter);
             score.putExtra("difficulty",this.difficulty);
+            score.putExtra("test",this.difficulty);
             startActivity(score);
             finish();
         }
