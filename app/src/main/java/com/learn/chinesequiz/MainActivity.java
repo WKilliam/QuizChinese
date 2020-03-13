@@ -35,17 +35,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         Intent srcintent = getIntent();
+        int index = 3;
 
         this.index = srcintent.getIntExtra("index",0);
 
         this.wrongAnswerList = srcintent.getStringArrayListExtra("Wrong");
         this.questionList = srcintent.getParcelableArrayListExtra("difficulty");
-        this.difficulty = srcintent.getStringExtra("difficultyString");
         this.counter = srcintent.getIntExtra("counter",0);
+        this.difficulty = srcintent.getStringExtra("difficultyString");
 
 
         Button submitButton = findViewById(R.id.Submit);
-        playInit(this.questionList, this.wrongAnswerList);
+
+        playInit();
         submitButton.setOnClickListener(this);
 
 
@@ -53,18 +55,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void playInit(ArrayList<Question> questions, ArrayList<String> wrongResponses){
-
-
+    public void playInit(){
 
 
         TextView questionBox = findViewById(R.id.boxQuestion);
-        questionBox.setText("N°: "+(this.index + 1)+" " +questions.get(this.index).getQuestion());
+        questionBox.setText("N°: "+(this.index + 1)+" " +questionList.get(this.index).getQuestion());
 
 
-        String goodResult = questions.get(this.index).getGoodResult();
+        String goodResult = questionList.get(this.index).getGoodResult();
 
-        ArrayList<String> listProposition = creatListRandom(goodResult,wrongResponses);
+        ArrayList<String> listProposition = creatListRandom(goodResult,wrongAnswerList);
 
         RadioButton choice1 = findViewById(R.id.Choice1);
         RadioButton choice2 = findViewById(R.id.Choice2);
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageView viewById1 = findViewById(R.id.imageView);
 
-        viewById1.setImageResource(questions.get(this.index).getPicture());
+        viewById1.setImageResource(questionList.get(this.index).getPicture());
 
         choice1.setText(listProposition.get(0));
 
@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putParcelableArrayListExtra("difficulty", this.questionList);
                 intent.putExtra("index", this.index);
                 intent.putExtra("counter", this.counter);
+                intent.putExtra("difficultyString", difficulty);
+
                 //intent.putExtra("turn",this.numberTurn);
                 startActivity(intent);
 
@@ -141,6 +143,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void isEndGame() {
         Intent srcintent = getIntent();
         ArrayList<Question> easylist = srcintent.getParcelableArrayListExtra("difficulty");
+
+
         int size = easylist.size();
         if(this.index==size){
             Intent score = new Intent(this,ScorePage.class);

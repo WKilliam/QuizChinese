@@ -22,10 +22,12 @@
         android:id="@+id/Submit"
         android:layout_width="117dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="28dp"
+        android:background="@android:drawable/divider_horizontal_textfield"
         android:text="Valider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/resultTextView"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="@+id/resultTextView" />
 
     <TextView

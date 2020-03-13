@@ -19,6 +19,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
         Button buttonStart = findViewById(R.id.startBtn);
         buttonStart.setOnClickListener(this);
 
@@ -53,27 +54,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                             switch (which) {
 
                                 case 0: // FACILE
-                                    ArrayList<Question> easyQuestions = QuestionHelper.getEasyQuestions();
-                                    ArrayList<String> wrongEasyResponses = QuestionHelper.getWrongEasyResponses();
-                                    Collections.shuffle(easyQuestions);
-                                    intent.putStringArrayListExtra("Wrong",wrongEasyResponses);
-                                    intent.putParcelableArrayListExtra("difficulty",easyQuestions);
-                                    intent.putExtra("difficultyString","FACILE");
-                                    intent.putExtra("index",0);
-                                    intent.putExtra("turn",1);
-
-                                    startActivity(intent);
+                                    startQuiz(QuestionHelper.getEasyQuestions(),
+                                            QuestionHelper.getWrongEasyResponses(),
+                                            "FACILE");
                                     break;
                                 case 1:
-                                    ArrayList<Question> mediumQuestions = QuestionHelper.getMediumQuestions();
-                                    ArrayList<String> wrongMediumResponses1 = QuestionHelper.getWrongMediumResponses();
-                                    Collections.shuffle(mediumQuestions);
-                                    intent.putStringArrayListExtra("Wrong",wrongMediumResponses1);
-                                    intent.putParcelableArrayListExtra("difficulty",mediumQuestions);
-                                    intent.putExtra("difficultyString","ITERMEDIAIRE");
-                                    intent.putExtra("index",0);
-                                    intent.putExtra("turn",1);
-                                    startActivity(intent);
+                                    startQuiz(QuestionHelper.getMediumQuestions(),
+                                            QuestionHelper.getWrongMediumResponses(),
+                                            "INTERMEDIAIRE");
                                     break;
                                 case 2:
                                     ArrayList<Question> hardQuestions = QuestionHelper.getHardQuestions();
@@ -135,5 +123,18 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
             }
 
+    }
+
+    private void startQuiz(ArrayList<Question> questions, ArrayList<String> wrongResponses, String difficulty) {
+        Collections.shuffle(questions);
+
+        Intent intent = new Intent(HomePage.this, MainActivity.class);
+        intent.putStringArrayListExtra("Wrong",wrongResponses);
+        intent.putParcelableArrayListExtra("difficulty",questions);
+        intent.putExtra("difficultyString",difficulty);
+        intent.putExtra("index",0);
+        intent.putExtra("turn",1);
+
+        startActivity(intent);
     }
 }
