@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context=".MainActivity">
 
     <ImageView
@@ -22,24 +23,27 @@
         android:layout_width="117dp"
         android:layout_height="46dp"
         android:layout_marginBottom="32dp"
-        android:text="Submit"
+        android:text="Valider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/resultTextView"
         app:layout_constraintStart_toStartOf="@+id/resultTextView" />
 
     <TextView
         android:id="@+id/resultTextView"
-        android:layout_width="314dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Reponse"
+        android:background="#02F44336"
+        android:textColor="#F44336"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/Submit"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        tools:text="Reponse" />
 
     <RadioGroup
         android:id="@+id/RadioGroup"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/resultTextView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -48,28 +52,42 @@
 
         <RadioButton
             android:id="@+id/Choice1"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:text="RadioButton" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="日"
+            android:textSize="18sp"
+            tools:text="日" />
 
         <RadioButton
             android:id="@+id/Choice2"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:text="test" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="人"
+            android:textSize="18sp"
+            tools:text="人" />
 
         <RadioButton
             android:id="@+id/Choice3"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:text="RadioButton" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="国"
+            android:textSize="18sp"
+            tools:text="国" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/boxQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="369dp"
+        android:layout_height="31dp"
+        android:gravity="center"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />

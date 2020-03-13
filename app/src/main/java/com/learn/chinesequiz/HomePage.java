@@ -37,7 +37,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 case R.id.startBtn:
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Choose an animal");
+                    builder.setTitle("Choisir une difficulté :");
                     String[] difficult = {"FACILE","NORMAL","DIFFICILE"};
                     builder.setItems(difficult, new DialogInterface.OnClickListener() {
                         @Override

@@ -33,8 +33,8 @@ public class CurrencyAdapte extends RecyclerView.Adapter<CurrencyAdapte.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Question currency = currencies.get(position);
-        holder.flag.setImageResource(currency.getPicture());
-        holder.sybol.setText(currency.getQuestion() + " " + position);
+        holder.viewImageQuestion.setImageResource(currency.getPicture());
+        holder.resultText.setText(currency.getQuestion() + " " + position);
         //holder.itemView.setOnClickListener();
     }
 
@@ -45,15 +45,15 @@ public class CurrencyAdapte extends RecyclerView.Adapter<CurrencyAdapte.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        final ImageView flag;
-        final TextView sybol;
-        final TextView rate;
+        final ImageView viewImageQuestion;
+        final TextView resultText;
+        final TextView difficultyText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            flag = itemView.findViewById(R.id.imageView6);
-            sybol = itemView.findViewById(R.id.textViewTaux);
-            rate = itemView.findViewById(R.id.textView2);
+            viewImageQuestion = itemView.findViewById(R.id.imageView6);
+            resultText = itemView.findViewById(R.id.textViewTaux);
+            difficultyText = itemView.findViewById(R.id.textView2);
         }
     }
 }

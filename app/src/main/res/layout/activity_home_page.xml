@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background1"
     tools:context=".HomePage">
 
     <Button
         android:id="@+id/startBtn"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="155dp"
         android:layout_height="41dp"
+
         android:text="Commencer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

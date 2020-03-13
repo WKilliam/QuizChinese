@@ -10,13 +10,13 @@ public class QuestionHelper {
 
     public static ArrayList<Question> getEasyQuestions() {
         ArrayList<Question> easyList = new ArrayList<>();
-        easyList.add(new Question("Cette image signifie quel caractère?", "车", R.drawable.car, 0));
-        easyList.add(new Question("Cette image signifie quel caractère?", "火", R.drawable.fire, 0));
-        easyList.add(new Question("Cette image signifie quel caractère?", "森", R.drawable.forest, 0));
-        //easyList.add(new Question("Cette image signifie quel caractère?", "月", R.drawable.moon, 0));
-        //easyList.add(new Question("Cette image signifie quel caractère?", "山", R.drawable.mountain, 0));
-        //easyList.add(new Question("Cette image signifie quel caractère?", "日", R.drawable.sun, 0));
-        //easyList.add(new Question("Cette image signifie quel caractère?", "水", R.drawable.water, 0));
+        easyList.add(new Question("Quel caractère chinois veut dire 'voiture'?", "车","FACILE", R.drawable.car, 0));
+        easyList.add(new Question("Quel caractère chinois veut dire 'feu'?", "火", "FACILE",R.drawable.fire, 0));
+        easyList.add(new Question("Quel caractère chinois veut dire 'forêt'?", "森","FACILE", R.drawable.forest, 0));
+        easyList.add(new Question("Quel caractère chinois veut dire 'lune'?", "月", "FACILE",R.drawable.moon, 0));
+        easyList.add(new Question("Quel caractère chinois veut dire 'montaine'?", "山", "FACILE",R.drawable.mountain, 0));
+        easyList.add(new Question("Quel caractère chinois veut dire 'soleil'?", "日", "FACILE",R.drawable.sun, 0));
+        easyList.add(new Question("Quel caractère chinois veut dire 'l'eau'?", "水", "FACILE",R.drawable.water, 0));
         return easyList;
     }
 
@@ -38,13 +38,13 @@ public class QuestionHelper {
 
     public static ArrayList<Question> getMediumQuestions() {
         ArrayList<Question> mediumList = new ArrayList<>();
-        mediumList.add(new Question("Que signifie ce caractère ?", "maison", R.drawable.home, 0));
-        mediumList.add(new Question("Que signifie ce caractère ?", "oiseau", R.drawable.bird, 0));
-        mediumList.add(new Question("Que signifie ce caractère ?", "pluie", R.drawable.rain, 0));
-        mediumList.add(new Question("Que signifie ce caractère ?", "pays", R.drawable.pays, 0));
-        mediumList.add(new Question("Que signifie ce caractère ?", "chat", R.drawable.cat, 0));
-        mediumList.add(new Question("Que signifie ce caractère ?", "nuage", R.drawable.cloud, 0));
-        mediumList.add(new Question("Que signifie ce caractère ?", "neige", R.drawable.snow, 0));
+        mediumList.add(new Question("Que signifie ce caractère ?", "maison","INTERMEDIAIRE", R.drawable.home, 0));
+        mediumList.add(new Question("Que signifie ce caractère ?", "oiseau","INTERMEDIAIRE", R.drawable.bird, 0));
+        mediumList.add(new Question("Que signifie ce caractère ?", "pluie","INTERMEDIAIRE", R.drawable.rain, 0));
+        mediumList.add(new Question("Que signifie ce caractère ?", "pays","INTERMEDIAIRE", R.drawable.pays, 0));
+        mediumList.add(new Question("Que signifie ce caractère ?", "chat", "INTERMEDIAIRE",R.drawable.cat, 0));
+        mediumList.add(new Question("Que signifie ce caractère ?", "nuage","INTERMEDIAIRE", R.drawable.cloud, 0));
+        mediumList.add(new Question("Que signifie ce caractère ?", "neige","INTERMEDIAIRE", R.drawable.snow, 0));
         return mediumList;
     }
 
@@ -67,13 +67,13 @@ public class QuestionHelper {
 
     public static ArrayList<Question> getHardQuestions() {
         ArrayList<Question> hardList = new ArrayList<>();
-        hardList.add(new Question("Que signifie ce caractère ?", "gagner", R.drawable.gagner, 0));
-        hardList.add(new Question("Que signifie ce caractère ?", "cuisiner", R.drawable.cuisiner, 0));
-        hardList.add(new Question("Que signifie ce caractère ?", "aimer", R.drawable.aimer, 0));
-        hardList.add(new Question("Que signifie ce caractère ?", "compliquer", R.drawable.compliquer, 0));
-        hardList.add(new Question("Que signifie ce caractère ?", "aveugler", R.drawable.aveugle, 0));
-        hardList.add(new Question("Que signifie ce caractère ?", "voleur", R.drawable.voleur, 0));
-        hardList.add(new Question("Que signifie ce caractère ?", "givre", R.drawable.givre, 0));
+        hardList.add(new Question("Que signifie ce caractère ?", "gagner", "DIFFICILE", R.drawable.gagner, 0));
+        hardList.add(new Question("Que signifie ce caractère ?", "cuisiner", "DIFFICILE",R.drawable.cuisiner, 0));
+        hardList.add(new Question("Que signifie ce caractère ?", "aimer", "DIFFICILE",R.drawable.aimer, 0));
+        hardList.add(new Question("Que signifie ce caractère ?", "compliquer","DIFFICILE", R.drawable.compliquer, 0));
+        hardList.add(new Question("Que signifie ce caractère ?", "aveugler", "DIFFICILE",R.drawable.aveugle, 0));
+        hardList.add(new Question("Que signifie ce caractère ?", "voleur", "DIFFICILE",R.drawable.voleur, 0));
+        hardList.add(new Question("Que signifie ce caractère ?", "givre", "DIFFICILE",R.drawable.givre, 0));
         return hardList;
     }
 

@@ -11,20 +11,23 @@ public class Question implements Parcelable {
 
     private String question;
     private String goodResult;
+    private String levelS;
     private int picture;
     private int sound;
 
-    public Question(String question, String goodResult, int picture) {
+    public Question(String question, String goodResult,String levelS, int picture) {
         this.question = question;
         this.goodResult = goodResult;
         this.picture = picture;
+        this.levelS=levelS;
     }
 
-    public Question(String question, String goodResult, int picture, int sound) {
+    public Question(String question, String goodResult,String levelS, int picture, int sound) {
         this.question = question;
         this.goodResult = goodResult;
         this.picture = picture;
         this.sound = sound;
+        this.levelS=levelS;
     }
 
 
@@ -33,6 +36,7 @@ public class Question implements Parcelable {
         goodResult = in.readString();
         picture = in.readInt();
         sound = in.readInt();
+        levelS=in.readString();
     }
 
     @Override
@@ -41,6 +45,7 @@ public class Question implements Parcelable {
         dest.writeString(goodResult);
         dest.writeInt(picture);
         dest.writeInt(sound);
+        dest.writeString(levelS);
     }
 
     @Override
@@ -59,6 +64,14 @@ public class Question implements Parcelable {
             return new Question[size];
         }
     };
+
+    public String getLevelS() {
+        return levelS;
+    }
+
+    public void setLevelS(String levelS) {
+        this.levelS = levelS;
+    }
 
     public String getQuestion() {
         return question;
